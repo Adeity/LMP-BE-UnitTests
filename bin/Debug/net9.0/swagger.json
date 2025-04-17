@@ -1,0 +1,1811 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "LMPortalAPI"
+  },
+  "host": "localhost:4372",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/licensePage/getLicenses/{resellerId}": {
+      "get": {
+        "tags": [
+          "LicensePage"
+        ],
+        "summary": "Get EndPoint to Get the Licenses for the License Table",
+        "operationId": "LicensePage_GetLicensesForGeneralTable",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "resellerId",
+            "in": "path",
+            "description": "Id for Reseller Id for which the License are being retrieved.",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/licensePage/getLicenseQuota/{resellerId}": {
+      "get": {
+        "tags": [
+          "LicensePage"
+        ],
+        "summary": "Get EndPoint to Get the Licenses Packages",
+        "operationId": "LicensePage_GetLicensesPackages",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "resellerId",
+            "in": "path",
+            "description": "Id for Reseller Id for which the License are being retrieved.",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/licensePage/getOrganizationNamesList/{resellerId}": {
+      "get": {
+        "tags": [
+          "LicensePage"
+        ],
+        "summary": "Get EndPoint to Get the OrganizationNames",
+        "operationId": "LicensePage_GetOrganizationNamesList",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "resellerId",
+            "in": "path",
+            "description": "Id for Reseller Id for which the Organizations are being retrieved.",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/license/licensetable": {
+      "get": {
+        "tags": [
+          "Licenses"
+        ],
+        "summary": "Retrieves the table list of all licenses\r\nFor All Resellers",
+        "operationId": "Licenses_GetAllLicenses",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "searchQuery",
+            "in": "query",
+            "description": "Parameter link to the search functionality.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Pagination parameter link to the page number.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Pagination parameter link to the page size.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/license/licenseTable/licenses": {
+      "get": {
+        "tags": [
+          "Licenses"
+        ],
+        "operationId": "Licenses_GetLicenses",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "resellerID",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "searchQuery",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/license/emailLicenseDetails": {
+      "post": {
+        "tags": [
+          "Licenses"
+        ],
+        "operationId": "Licenses_EmailLicenseDetails",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "resellerID",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "emailDetails",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SendEmailDto"
+            }
+          },
+          {
+            "name": "multipleLicenses",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "isNewContact",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/license/{resellerID}/moveLicense": {
+      "post": {
+        "tags": [
+          "Licenses"
+        ],
+        "operationId": "Licenses_EmailLicenseDetails",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "resellerID",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "serialNumberDetailId",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "oldOrganizationId",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "newOrganizationId",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/organizationDetails/{resellerId}/getInformation/{organizationId}": {
+      "get": {
+        "tags": [
+          "OrganizationDetails"
+        ],
+        "summary": "End Point To Retrieve Information for Organization Details Card",
+        "operationId": "OrganizationDetails_GetOrganizationProfilesList",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "description": "Id (PK) of the organization account that we want to retrieve details for.",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "resellerId",
+            "in": "path",
+            "description": "Id (PK) of the organization reseller account that works as the parent organization.",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the Organization Profile Information",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "There was nothing matching the provided parameters"
+          },
+          "401": {
+            "description": "User is not authorized to get this information"
+          },
+          "500": {
+            "description": "Exception was thrown while processing the request"
+          }
+        }
+      }
+    },
+    "/organizationDetails/{resellerId}/getLicenses/{organizationId}": {
+      "get": {
+        "tags": [
+          "OrganizationDetails"
+        ],
+        "summary": "End Point To Retrieve Information for Organization Details Card",
+        "operationId": "OrganizationDetails_GetOrganizationLicenses",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "description": "Id (PK) of the organization account that we want to retrieve details for.",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "resellerId",
+            "in": "path",
+            "description": "Id (PK) of the organization reseller account that works as the parent organization.",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the Organization Licenses",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "There was nothing matching the provided parameters"
+          },
+          "401": {
+            "description": "User is not authorized to get this information"
+          },
+          "500": {
+            "description": "Exception was thrown while processing the request"
+          }
+        }
+      }
+    },
+    "/organizationDetails/{resellerId}/getLicensePackagesDetails/{organizationId}": {
+      "get": {
+        "tags": [
+          "OrganizationDetails"
+        ],
+        "summary": "End Point To Retrieve Information for Organization Details Card",
+        "operationId": "OrganizationDetails_GetLicensePackagesStatus",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "description": "Id (PK) of the organization account that we want to retrieve details for.",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "resellerId",
+            "in": "path",
+            "description": "Id (PK) of the organization reseller account to retrieve the Package Details.",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the Organization Licenses",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "There was nothing matching the provided parameters"
+          },
+          "401": {
+            "description": "User is not authorized to get this information"
+          },
+          "500": {
+            "description": "Exception was thrown while processing the request"
+          }
+        }
+      }
+    },
+    "/organizations/{resellerID}": {
+      "get": {
+        "tags": [
+          "Organizations"
+        ],
+        "summary": "End Point that retrieves all the Child Organization Profiles\r\nfor a given Reseller Account / Reseller Organization",
+        "operationId": "Organizations_GetOrganizationProfilesList",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "resellerID",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{resellerID}/organizationcontacts/{organizationID}": {
+      "get": {
+        "tags": [
+          "Organizations"
+        ],
+        "operationId": "Organizations_GetOrganizationContactList",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "organizationID",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "resellerID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{resellerID}/complementaryInfo": {
+      "get": {
+        "tags": [
+          "Organizations"
+        ],
+        "operationId": "Organizations_GetComplentaryInfo",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "resellerID",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{resellerID}/organizationdDetails/{organizationID}": {
+      "get": {
+        "tags": [
+          "Organizations"
+        ],
+        "operationId": "Organizations_GetOrganizationDetailInformation",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "resellerID",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "organizationID",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{resellerID}/organizationNames": {
+      "get": {
+        "tags": [
+          "Organizations"
+        ],
+        "operationId": "Organizations_GetListOfOrganizationNames",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "resellerID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{resellerID}/organizationAccountIds": {
+      "get": {
+        "tags": [
+          "Organizations"
+        ],
+        "operationId": "Organizations_GetListOrganizationAccountIds",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "resellerID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{resellerID}/organizationUpdate/{organizationID}": {
+      "post": {
+        "tags": [
+          "Organizations"
+        ],
+        "operationId": "Organizations_PostUpdateOrganization",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "organizationID",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InputOrganizationDetailDto"
+            }
+          },
+          {
+            "name": "resellerID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{resellerID}/createOrganization": {
+      "post": {
+        "tags": [
+          "Organizations"
+        ],
+        "operationId": "Organizations_PostCreateOrganization",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "resellerID",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InputOrganizationDetailDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{resellerID}/createOrganizationContact/{organizationID}": {
+      "post": {
+        "tags": [
+          "Organizations"
+        ],
+        "operationId": "Organizations_PostCreateOrganization",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "organizationID",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OrganizationContactForCreationDto"
+            }
+          },
+          {
+            "name": "resellerID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/accountProfile/getListOfLogs": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "summary": "Get EndPoint to Get the List of File Logs to Retrieve",
+        "operationId": "Profile_GetListOfLogs",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/accountProfile/getDataLogFile": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "summary": "Get EndPoint to Get the List of File Logs to Retrieve",
+        "operationId": "Profile_GetDataOfLogs",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/accountProfile/getResellerAccountProfiles": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "summary": "Get EndPoint to Get the List of File Logs to Retrieve",
+        "operationId": "Profile_GetResellerAccounts",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/accountProfile/moveResellerAccount/{userId}/{newResellerId}": {
+      "post": {
+        "tags": [
+          "Profile"
+        ],
+        "operationId": "Profile_MoveResellerAccount",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "newResellerId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/services/test": {
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Test End Point Just to Make Sure Service is Up",
+        "operationId": "Services_Get",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/api/services/testMemberShipContext/{id}": {
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Test End Point Just to Make Sure Service is Up",
+        "operationId": "Services_TestMemberShipContext",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/services/user/getusers": {
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Test Method to Fetch the Users in the internal SQL Database for Log in",
+        "operationId": "Services_GetUsers",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/services/user/getcontacts": {
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Test End Point to Fetch all the entried in the Organization Contacts Table",
+        "operationId": "Services_GetContacts",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/services/user/getserialnumberstatus/{id}": {
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Test End Point to Check Communication with Reseller Service",
+        "operationId": "Services_GetSerialNumberStatus",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/services/authenticate": {
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "operationId": "Services_AuthenticateUser",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/services/licenses/getSerialNumberDetail/{serialNumberDetailId}": {
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "operationId": "Services_GetSerialNumberDetails",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "serialNumberDetailId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/services/user/getprofileInfo/{resellerId}": {
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "End Point to Retrieve Relevant Information for the Licenses Packages for specific Reseller **Pending UNIT Tests*",
+        "operationId": "Services_GetProfileInfo",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "resellerId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/services/user/getlicenses/{organizationId}": {
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Retrieve List of Licenses to Populate Table of Licenses",
+        "operationId": "Services_GetLicenses",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/services/user/generateserialnumbers": {
+      "post": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "End Point To Generate Serial Numbers",
+        "operationId": "Services_GenerateSerialNumbers",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "message",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/APIInput_GenerateSerialNumbers"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/services/user/licenseDetails/{serialNumberDetailId}": {
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Get Request to Fetch Organization Details",
+        "operationId": "Services_GetLicenseDetails",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "serialNumberDetailId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/services/user/transferLicense": {
+      "post": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Post Request to Transfer Licenses",
+        "operationId": "Services_TransferLicense",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "licenseDetails",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/APIInput_SerialNumberDetails"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/services/user/renewLicense": {
+      "post": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "End Point to Renew Licenses",
+        "operationId": "Services_RenewLicense",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "serialNumberDetails",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/APIInput_SerialNumberDetails"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/services/user/authenticate": {
+      "post": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "User Authentication Method",
+        "operationId": "Services_Post",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "userdetails",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/services/user/organizations/{id}": {
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Get Request to Populate Get Most Importnat Account Profile Information",
+        "operationId": "Services_GetAccountProfileInformation",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/services/user/organizationdetails/{id}": {
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Get Request to Fetch Organization Details",
+        "operationId": "Services_GetOrganizationDetails",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/services/user/gettablefields": {
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "End Point to get the List of Feilds necesary to populate the tables",
+        "operationId": "Services_GetTableFields",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/services/user/updateorganizationaccount": {
+      "put": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "End Point to Update the Organization Account Profile",
+        "operationId": "Services_UpdateOrganizationAccount",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "message",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/APIInput_UpdateOrganizationModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/services/user/createorganizationaccount": {
+      "post": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "End Point to Create a New Organization Account",
+        "operationId": "Services_CreateOrgAccount",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "_message",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "SendEmailDto": {
+      "type": "object",
+      "properties": {
+        "SerialNumberDetailsList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SerialNumberDetailsForEmailDto"
+          }
+        },
+        "ContactDetails": {
+          "$ref": "#/definitions/OrganizationContactForCreationDto"
+        }
+      }
+    },
+    "SerialNumberDetailsForEmailDto": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ProductNumber": {
+          "type": "string"
+        },
+        "SerialNumber": {
+          "type": "string"
+        },
+        "OrganizationId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "OrganizationName": {
+          "type": "string"
+        }
+      }
+    },
+    "OrganizationContactForCreationDto": {
+      "required": [
+        "OrganizationAccountId",
+        "FirstName",
+        "LastName",
+        "OrganizationRoleId",
+        "ContactTypeId",
+        "Email",
+        "PhoneNumber",
+        "UserID"
+      ],
+      "type": "object",
+      "properties": {
+        "OrganizationAccountId": {
+          "type": "string"
+        },
+        "FirstName": {
+          "type": "string"
+        },
+        "LastName": {
+          "type": "string"
+        },
+        "OrganizationRoleId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ContactTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Email": {
+          "type": "string"
+        },
+        "PhoneNumber": {
+          "type": "string"
+        },
+        "UserID": {
+          "type": "string"
+        }
+      }
+    },
+    "InputOrganizationDetailDto": {
+      "required": [
+        "OrganizationName",
+        "Address1",
+        "City",
+        "State",
+        "PostalCode",
+        "Country",
+        "FirstName",
+        "LastName",
+        "ContactRole",
+        "Email",
+        "PhoneNumber",
+        "UserId"
+      ],
+      "type": "object",
+      "properties": {
+        "OrganizationName": {
+          "type": "string"
+        },
+        "AccountId": {
+          "type": "string"
+        },
+        "IdAddress": {
+          "type": "string"
+        },
+        "Address1": {
+          "type": "string"
+        },
+        "Address2": {
+          "type": "string"
+        },
+        "Address3": {
+          "type": "string"
+        },
+        "City": {
+          "type": "string"
+        },
+        "State": {
+          "type": "string"
+        },
+        "PostalCode": {
+          "type": "string"
+        },
+        "Country": {
+          "type": "string"
+        },
+        "IdContact": {
+          "type": "string"
+        },
+        "FirstName": {
+          "type": "string"
+        },
+        "LastName": {
+          "type": "string"
+        },
+        "ContactRole": {
+          "type": "string"
+        },
+        "Email": {
+          "type": "string"
+        },
+        "PhoneNumber": {
+          "type": "string"
+        },
+        "UserId": {
+          "type": "string"
+        }
+      }
+    },
+    "APIInput_GenerateSerialNumbers": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "organizationId": {
+          "type": "string"
+        },
+        "organizationName": {
+          "type": "string"
+        },
+        "PackageDetailsId": {
+          "type": "string"
+        },
+        "ProductNumber": {
+          "type": "string"
+        },
+        "QuantityOfLicenses": {
+          "type": "string"
+        }
+      }
+    },
+    "APIInput_SerialNumberDetails": {
+      "type": "object",
+      "properties": {
+        "serialNumberDetailId": {
+          "type": "string"
+        },
+        "userID": {
+          "type": "string"
+        }
+      }
+    },
+    "APIInput_UpdateOrganizationModel": {
+      "type": "object",
+      "properties": {
+        "organizationid": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "address2": {
+          "type": "string"
+        },
+        "address3": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "postalcode": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "firstname": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "roletype": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phonenumber": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

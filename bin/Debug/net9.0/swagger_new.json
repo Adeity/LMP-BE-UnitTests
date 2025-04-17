@@ -1,0 +1,117 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "License Management API",
+    "version": "1.0.0",
+    "description": "REST API for managing resellers, organizations, and licenses."
+  },
+  "paths": {
+    "/resellers": {
+      "get": {
+        "summary": "Retrieve a list of resellers (for ADMIN role)",
+        "responses": {
+          "200": { "description": "List of resellers", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Reseller" } } } }
+        }
+      }
+    },
+    "/resellers/{resellerId}": {
+      "get": {
+        "summary": "Retrieve reseller details",
+        "parameters": [ { "name": "resellerId", "in": "path", "required": true, "schema": { "type": "integer" } } ],
+        "responses": {
+          "200": { "description": "Reseller details", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Reseller" } } } }
+        }
+      }
+    },
+    "/resellers/{resellerId}/organizations": {
+      "get": {
+        "summary": "Retrieve organizations accessible by a reseller",
+        "parameters": [ { "name": "resellerId", "in": "path", "required": true, "schema": { "type": "integer" } } ],
+        "responses": {
+          "200": { "description": "List of organizations", "content": { "application/json": { "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Organization" } } } } }
+        }
+      },
+      "post": {
+        "summary": "Create a new organization under a reseller",
+        "parameters": [ { "name": "resellerId", "in": "path", "required": true, "schema": { "type": "integer" } } ],
+        "requestBody": { "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Organization" } } } },
+        "responses": {
+          "201": { "description": "Organization created" }
+        }
+      }
+    },
+    "/organizations/{organizationId}": {
+      "get": {
+        "summary": "Retrieve organization details",
+        "parameters": [ { "name": "organizationId", "in": "path", "required": true, "schema": { "type": "integer" } } ],
+        "responses": {
+          "200": { "description": "Organization details", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Organization" } } } }
+        }
+      },
+      "put": {
+        "summary": "Update organization details",
+        "parameters": [ { "name": "organizationId", "in": "path", "required": true, "schema": { "type": "integer" } } ],
+        "requestBody": { "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Organization" } } } },
+        "responses": {
+          "200": { "description": "Organization updated" }
+        }
+      }
+    },
+    "/organizations/{organizationId}/licenses": {
+      "get": {
+        "summary": "Retrieve licenses assigned to an organization",
+        "parameters": [ { "name": "organizationId", "in": "path", "required": true, "schema": { "type": "integer" } } ],
+        "responses": {
+          "200": { "description": "List of licenses", "content": { "application/json": { "schema": { "type": "array", "items": { "$ref": "#/components/schemas/License" } } } } }
+        }
+      },
+      "post": {
+        "summary": "Assign a new license to an organization",
+        "parameters": [ { "name": "organizationId", "in": "path", "required": true, "schema": { "type": "integer" } } ],
+        "requestBody": { "content": { "application/json": { "schema": { "$ref": "#/components/schemas/License" } } } },
+        "responses": {
+          "201": { "description": "License assigned" }
+        }
+      }
+    },
+    "/licenses/{licenseId}/transfer": {
+      "put": {
+        "summary": "Transfer a license between organizations",
+        "parameters": [ { "name": "licenseId", "in": "path", "required": true, "schema": { "type": "integer" } } ],
+        "requestBody": { "content": { "application/json": { "schema": { "type": "object", "properties": { "newOrganizationId": { "type": "integer" } } } } } },
+        "responses": {
+          "200": { "description": "License transferred" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Reseller": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "name": { "type": "string" }
+        }
+      },
+      "Organization": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "name": { "type": "string" },
+          "contact": { "type": "string" }
+        }
+      },
+      "License": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "serialNumber": { "type": "string" },
+          "productNumber": { "type": "string" },
+          "expirationDate": { "type": "string", "format": "date" },
+          "organizationId": { "type": "integer" }
+        }
+      }
+    }
+  }
+}
