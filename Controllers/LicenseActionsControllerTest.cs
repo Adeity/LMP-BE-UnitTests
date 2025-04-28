@@ -75,7 +75,7 @@ public class LicenseActionsControllerTest
         Assert.Equal(123, outputDto.Id);
     }
 
-    
+
     [Fact]
     public async Task GenerateLicense_ShouldReturnNotFound_WhenResellerOrgIsNull()
     {
@@ -140,7 +140,7 @@ public class LicenseActionsControllerTest
         Assert.Equal("LICENSE_GENERATION_FAILED", error.Code);
         Assert.Equal("Unexpected failure", error.Details["error"]);
     }
-    
+
     [Fact]
     public async Task MoveLicense_ShouldReturnOk_WhenInputsAreValid()
     {
@@ -167,7 +167,7 @@ public class LicenseActionsControllerTest
     [Fact]
     public async Task MoveLicense_ShouldReturnUnauthorized_WhenSourceOrgNotUnderReseller()
     {
-        var dto = new MoveLicenseInputDto { SourceOrganizationAccountId = 1, TargetOrganizationAccountId = 2 };
+        var dto = new MoveLicenseInputDto { SourceOrganizationAccountId = 1, TargetOrganizationAccountId = 2, SerialNumberDetailId = 1};
 
         _userManagerMock.Setup(x => x.GetOrgByPrincipalAsync(It.IsAny<ClaimsPrincipal>())).ReturnsAsync(5);
         _organizationAccountServiceMock.Setup(x => x.IsChildOrganizationOfReseller(dto.SourceOrganizationAccountId, 5)).ReturnsAsync(false);
@@ -183,7 +183,7 @@ public class LicenseActionsControllerTest
     [Fact]
     public async Task MoveLicense_ShouldReturnUnauthorized_WhenTargetOrgNotUnderReseller()
     {
-        var dto = new MoveLicenseInputDto { SourceOrganizationAccountId = 1, TargetOrganizationAccountId = 2 };
+        var dto = new MoveLicenseInputDto { SourceOrganizationAccountId = 1, TargetOrganizationAccountId = 2, SerialNumberDetailId = 1};
 
         _userManagerMock.Setup(x => x.GetOrgByPrincipalAsync(It.IsAny<ClaimsPrincipal>())).ReturnsAsync(5);
         _organizationAccountServiceMock.Setup(x => x.IsChildOrganizationOfReseller(dto.SourceOrganizationAccountId, 5)).ReturnsAsync(true);
@@ -200,7 +200,7 @@ public class LicenseActionsControllerTest
     [Fact]
     public async Task MoveLicense_ShouldReturnNotFound_WhenResellerOrgIdIsNull()
     {
-        var dto = new MoveLicenseInputDto { SourceOrganizationAccountId = 1, TargetOrganizationAccountId = 2 };
+        var dto = new MoveLicenseInputDto { SourceOrganizationAccountId = 1, TargetOrganizationAccountId = 2, SerialNumberDetailId = 1};
 
         _userManagerMock.Setup(x => x.GetOrgByPrincipalAsync(It.IsAny<ClaimsPrincipal>())).ReturnsAsync((int?)null);
 
@@ -214,7 +214,7 @@ public class LicenseActionsControllerTest
     [Fact]
     public async Task MoveLicense_ShouldReturnInternalServerError_OnUnhandledException()
     {
-        var dto = new MoveLicenseInputDto { SourceOrganizationAccountId = 1, TargetOrganizationAccountId = 2 };
+        var dto = new MoveLicenseInputDto { SourceOrganizationAccountId = 1, TargetOrganizationAccountId = 2, SerialNumberDetailId = 1};
 
         _userManagerMock.Setup(x => x.GetOrgByPrincipalAsync(It.IsAny<ClaimsPrincipal>())).ReturnsAsync(5);
         _organizationAccountServiceMock.Setup(x => x.IsChildOrganizationOfReseller(It.IsAny<int>(), It.IsAny<int>()))

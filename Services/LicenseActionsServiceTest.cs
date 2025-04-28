@@ -25,11 +25,10 @@ public class LicenseActionsServiceTest
     private readonly Mock<ISubscriptionItemService> _subscriptionItemServiceMock = new();
     private readonly Mock<IActivationServiceCaller> _activationServiceCallerMock = new();
     private readonly Mock<IMyDbContextProvider> _dbContextProviderMock = new();
-    
+
     private LicenseActionsService CreateService()
     {
         return new LicenseActionsService(
-            null,
             _organizationAccountServiceMock.Object,
             _packageDetailRepositoryMock.Object,
             _organizationPackageDetailsServiceMock.Object,
@@ -43,7 +42,7 @@ public class LicenseActionsServiceTest
     }
 
 
-    
+
     [Fact]
     public async Task MoveLicense_ShouldComplete_WhenValidInputsProvided()
     {
@@ -72,7 +71,7 @@ public class LicenseActionsServiceTest
     [Fact]
     public async Task MoveLicense_ShouldThrow_WhenSourceOrgNotFound()
     {
-        var dto = new MoveLicenseInputDto { SourceOrganizationAccountId = 1 };
+        var dto = new MoveLicenseInputDto { SourceOrganizationAccountId = 1, TargetOrganizationAccountId = 2, SerialNumberDetailId = 3 };
 
         _organizationAccountServiceMock.Setup(x => x.GetByIdAsync(1)).ReturnsAsync((OrganizationAccountOutputDto?)null);
         _dbContextProviderMock.Setup(x => x.BeginTransaction()).Returns(Task.CompletedTask);
@@ -88,7 +87,7 @@ public class LicenseActionsServiceTest
     [Fact]
     public async Task MoveLicense_ShouldThrow_WhenTargetOrgNotFound()
     {
-        var dto = new MoveLicenseInputDto { SourceOrganizationAccountId = 1, TargetOrganizationAccountId = 2 };
+        var dto = new MoveLicenseInputDto { SourceOrganizationAccountId = 1, TargetOrganizationAccountId = 2, SerialNumberDetailId = 3 };
 
         _organizationAccountServiceMock.Setup(x => x.GetByIdAsync(1)).ReturnsAsync(new OrganizationAccountOutputDto { Id = 1 });
         _organizationAccountServiceMock.Setup(x => x.GetByIdAsync(2)).ReturnsAsync((OrganizationAccountOutputDto?)null);
@@ -159,7 +158,7 @@ public class LicenseActionsServiceTest
         Assert.Equal("Unexpected error", ex.Message);
         _dbContextProviderMock.Verify(x => x.RollbackAsync(), Times.Once);
     }
-    
+
     [Fact]
     public async Task GenerateLicense_ShouldReturnSerialNumber_WhenValidInputsProvided()
     {
@@ -191,11 +190,11 @@ public class LicenseActionsServiceTest
         Assert.Equal("SN-99999", result.SerialNumber);
         _dbContextProviderMock.Verify(x => x.CommitAsync(), Times.Once);
     }
-    
+
     [Fact]
     public async Task GenerateLicense_ShouldThrow_WhenPackageDetailNotFound()
     {
-        var dto = new GenerateLicenseInputDto { PackageDetailsId = 2 };
+        var dto = new GenerateLicenseInputDto { OrganizationAccountId = 1, PackageDetailsId = 2 };
         int resellerOrgAccountId = 99;
 
         _packageDetailRepositoryMock.Setup(x => x.GetByIdAsync(2)).ReturnsAsync((PackageDetail?)null);
@@ -208,7 +207,7 @@ public class LicenseActionsServiceTest
         Assert.Contains("Package Detail with ID: 2 not found", ex.Message);
         _dbContextProviderMock.Verify(x => x.RollbackAsync(), Times.Once);
     }
-    
+
     [Fact]
     public async Task GenerateLicense_ShouldThrow_WhenOrganizationNotFound()
     {
@@ -227,7 +226,7 @@ public class LicenseActionsServiceTest
         _dbContextProviderMock.Verify(x => x.RollbackAsync(), Times.Once);
     }
 
-    
+
     [Fact]
     public async Task GenerateLicense_ShouldThrow_WhenOrgPackageDetailNotFound()
     {
@@ -248,7 +247,7 @@ public class LicenseActionsServiceTest
         _dbContextProviderMock.Verify(x => x.RollbackAsync(), Times.Once);
     }
 
-    
+
     [Fact]
     public async Task GenerateLicense_ShouldThrow_WhenActivationReturnsError()
     {
