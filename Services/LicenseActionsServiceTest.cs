@@ -1,17 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DP_BE_LicensePortal.Model.dto.input;
-using DP_BE_LicensePortal.Model.dto.output;
-using DP_BE_LicensePortal.Model.Entities;
-using DP_BE_LicensePortal.Repositories.Interfaces;
-using DP_BE_LicensePortal.Services;
-using DP_BE_LicensePortal.Services.Interfaces;
+using LicenseManagementPortal.Model.dto.input;
+using LicenseManagementPortal.Model.dto.output;
+using LicenseManagementPortal.Model.Entities;
+using LicenseManagementPortal.Repositories.Interfaces;
+using LicenseManagementPortal.Services;
+using LicenseManagementPortal.Services.Interfaces;
 using JetBrains.Annotations;
 using Moq;
 using Xunit;
 
-namespace DP_BE_LicensePortal.UnitTests.Services;
+namespace LicenseManagementPortal.UnitTests.Services;
 
 [TestSubject(typeof(LicenseActionsService))]
 public class LicenseActionsServiceTest

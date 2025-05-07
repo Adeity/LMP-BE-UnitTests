@@ -1,20 +1,20 @@
 using System;
-using DP_BE_LicensePortal.Controllers;
+using LicenseManagementPortal.Controllers;
 using Xunit;
 using Moq;
-using DP_BE_LicensePortal.Controllers;
-using DP_BE_LicensePortal.Services.Interfaces;
-using DP_BE_LicensePortal.Model.dto.input;
-using DP_BE_LicensePortal.Model.dto;
+using LicenseManagementPortal.Controllers;
+using LicenseManagementPortal.Services.Interfaces;
+using LicenseManagementPortal.Model.dto.input;
+using LicenseManagementPortal.Model.dto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using DP_BE_LicensePortal.Services;
+using LicenseManagementPortal.Services;
 using JetBrains.Annotations;
 using Xunit;
 
-namespace DP_BE_LicensePortal.UnitTests.Controllers;
+namespace LicenseManagementPortal.UnitTests.Controllers;
 
 [TestSubject(typeof(LicenseActionsController))]
 public class LicenseActionsControllerTest
